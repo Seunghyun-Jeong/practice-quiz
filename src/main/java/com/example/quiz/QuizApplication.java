@@ -20,7 +20,9 @@ public class QuizApplication {
 	/** 실행 메서드 */
 	private	void execute() {
 		// 등록 처리
-		setup();
+		// setup();
+		// 전체 항목 취득
+		showList();
 	}
 
 	/** === 퀴즈 2건을 등록합니다 === */
@@ -38,5 +40,16 @@ public class QuizApplication {
 		quiz2 = repository.save(quiz2);
 		// 등록 확인
 		System.out.println("등록한 퀴즈는 " + quiz2 + "입니다.");
+	}
+
+	/** === 모든 데이터 취득 === */
+	private void showList() {
+		System.out.println("--- 모든 데이터 취득 개시 ---");
+		// 리포지토리를 이용해 모든 데이터를 취득해서 결과를 반환
+		Iterable<Quiz> quizzes = repository.findAll();
+		for (Quiz quiz : quizzes) {
+			System.out.println(quiz);
+		}
+		System.out.println("--- 모든 데이터 취득 완료 ---");
 	}
 }
