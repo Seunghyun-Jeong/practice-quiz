@@ -27,7 +27,9 @@ public class QuizApplication {
 		// 1건 취득
 		// showOne();
 		// 변경 처리
-		updateQuiz();
+		// updateQuiz();
+		// 삭제 처리
+		deleteQuiz();
 	}
 
 	/** === 퀴즈 2건을 등록합니다 === */
@@ -80,5 +82,12 @@ public class QuizApplication {
 		// 변경 결과 확인
 		System.out.println("변경된 데이터는 " + quiz1 + "입니다.");
 		System.out.println("--- 변경 처리 완료 ---");
+	}
+
+	private void deleteQuiz() {
+		System.out.println("--- 삭제 처리 개시 ---");
+		// 삭제 실행
+		repository.deleteById(2);
+		System.out.println("--- 삭제 처리 완료 ---");
 	}
 }
