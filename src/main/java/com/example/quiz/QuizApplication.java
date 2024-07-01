@@ -2,6 +2,7 @@ package com.example.quiz;
 
 import com.example.quiz.entity.Quiz;
 import com.example.quiz.repository.QuizRepository;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,7 +23,9 @@ public class QuizApplication {
 		// 등록 처리
 		// setup();
 		// 전체 항목 취득
-		showList();
+		// showList();
+		// 1건 취득
+		showOne();
 	}
 
 	/** === 퀴즈 2건을 등록합니다 === */
@@ -51,5 +54,18 @@ public class QuizApplication {
 			System.out.println(quiz);
 		}
 		System.out.println("--- 모든 데이터 취득 완료 ---");
+	}
+
+	private void showOne() {
+		System.out.println("--- 1건 취득 개시 ---");
+		// 리포지토리를 사용해서 1건의 데이터를 취득해서 결과를 반환(반환값은 Optional)
+		Optional<Quiz> quizOpt = repository.findById(1);
+		// 반환값이 있는지 확인
+		if (quizOpt.isPresent()) {
+			System.out.println(quizOpt.get());
+		} else {
+			System.out.println("해당 데이터는 존재하지 않습니다.");
+		}
+		System.out.println("--- 1건 취득 완료 ---");
 	}
 }
