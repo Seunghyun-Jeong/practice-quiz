@@ -3,11 +3,12 @@ package com.example.quiz.service;
 import com.example.quiz.entity.Quiz;
 import com.example.quiz.repository.QuizRepository;
 import java.util.Optional;
-import javax.swing.text.html.Option;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class QuizServiceImpl implements QuizService {
     /** Repository: 인젝션 */
     @Autowired
