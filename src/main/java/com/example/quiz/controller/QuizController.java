@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /** Quiz 컨트롤러 */
@@ -135,5 +136,14 @@ public class QuizController {
         form.setAuthor(quiz.getAuthor());
         form.setNewQuiz(false);
         return form;
+    }
+
+    /** id를 키로 사용해 데이터를 삭제 */
+    @PostMapping("/delete")
+    public String delete(@RequestParam("id") String id, Model model, RedirectAttributes redirectAttributes) {
+        // 퀴즈 정보를 1건 삭제하고 리다이렉트
+        service.deleteQuizById(Integer.parseInt(id));
+        redirectAttributes.addFlashAttribute("delcomplete", "삭제 완료했습니다");
+        return "redirect:/quiz";
     }
 }
